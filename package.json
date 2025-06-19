@@ -1,0 +1,24 @@
+{
+  "name": "opentelemetry-nodejs",
+  "version": "1.0.0",
+  "description": "Export  logs, traces and metrics to Azure Monitor using OTEL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shrividhhya7/opentelemetry-nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Shrividhhya7/opentelemetry-nodejs/issues"
+  },
+  "homepage": "https://github.com/Shrividhhya7/opentelemetry-nodejs#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
