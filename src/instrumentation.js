@@ -18,7 +18,7 @@ const { diag, DiagConsoleLogger, DiagLogLevel } = require('@opentelemetry/api');
 diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.INFO);
 
 // ✅ Define your Application Insights connection string directly here
-const connectionString = 'InstrumentationKey=8a5d7300-6624-4a43-a949-759676d59a7e;IngestionEndpoint=https://southindia-0.in.applicationinsights.azure.com/;LiveEndpoint=https://southindia.livediagnostics.monitor.azure.com/;ApplicationId=c3e1543b-afd6-4bcf-9864-badcd3922802';
+const connectionString = 'InstrumentationKey=xxxxxxxd59a7e;IngestionEndpoint=https://southindia-0.in.applicationinsights.azure.com/;LiveEndpoint=https://southindia.livediagnostics.monitor.azure.com/;ApplicationId=xxxxxxx';
 
 // ✅ Create exporters
 const traceExporter = new AzureMonitorTraceExporter({ connectionString });
