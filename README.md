@@ -1,5 +1,5 @@
 ```markdown
-### 1. 📘 Introduction
+### 📘 Introduction
 # 🎲 Dice API with OpenTelemetry
 
 A simple Node.js app using Express that:
@@ -40,13 +40,11 @@ Telemetry includes:
 
 ## 🔧 Install & Run
 
-### 1. 📦 Install dependencies
+### 📦 Install dependencies
 
-```bash
 npm install
-````
 
-### 2. ▶️ Start the Project
+### ▶️ Start the Project
 
 ```bash
 node src/app.js
