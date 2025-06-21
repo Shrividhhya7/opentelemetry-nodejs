@@ -75,3 +75,33 @@ resourceFromAttributes({
   - No auto-instrumentation is used — this app uses manual spans, counters, and histograms.
   - Replace the connection string in `instrumentation.js` with your own Application Insights key.
   - Graceful shutdown is handled via `SIGTERM`.
+
+
+### 📊 Data in Azure Monitor
+
+All the traces and dependencies are visible in **Transaction Search** within Application Insights.
+
+![Transaction Search](../img/transaction_search_1.png)  
+![Transaction Search](../img/transaction_search_2.png)
+
+Metrics are visible in the **Metrics** section of Application Insights.
+
+![Metrics](../img/metrics_1.png)  
+![Metrics](../img/metrics_2.png)
+
+**Custom Metrics**, **Exceptions**, and **Logs** can also be viewed in log tables using **KQL queries** like:
+
+```kusto
+customMetrics
+| where name == "dice.rolls.total"
+
+traces
+| where message contains "dice"
+
+```
+
+![Traces](../img/traces_1.png)
+![Traces](../img/traces_2.png)  
+
+![CustomMetrics](../img/custom_metrics_1.png)
+![CustomMetrics](../img/custom_metrics_1.png)
