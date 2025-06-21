@@ -81,7 +81,7 @@ resourceFromAttributes({
 
 All the traces and dependencies are visible in **Transaction Search** within Application Insights.
 
-![Transaction Search](../img/transaction_search_1.png) 
+![Transaction Search](/img/transaction_search_1.png) 
 
 Metrics are visible in the **Metrics** section of Application Insights.
 
