@@ -12,8 +12,8 @@ A simple Node.js app using Express that:
 ## 🚀 Features
 
 | Type    | Enabled | Exported via                                 |
-| ------- | ------- | -------------------------------------------- |
-| Traces  | ✅       | Azure Monitor Trace Exporter (`Application Insights`) |
+| ------- | ------- | ----------------------------------------------|
+| Traces  | ✅       | Azure Monitor Trace Exporter                 |
 | Metrics | ✅       | Azure Monitor Metric Exporter                |
 | Logs    | ✅       | Azure Monitor Log Exporter                   |
 
@@ -50,7 +50,7 @@ npm install
 node src/app.js
 ```
 
-### 3. 🧪 Test the endpoints
+### 🧪 Test the endpoints
 
   - `GET http://localhost:3000/` → Welcome page
   - `GET http://localhost:3000/roll` → Roll a 6-sided dice
