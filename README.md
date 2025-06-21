@@ -81,13 +81,7 @@ resourceFromAttributes({
 
 All the traces and dependencies are visible in **Transaction Search** within Application Insights.
 
-![Transaction Search](../opentelemetry-nodejs/img/transaction_search_1.png)  
-![Transaction Search](../opentelemetry-nodejs/img/transaction_search_2.png)
-
 Metrics are visible in the **Metrics** section of Application Insights.
-
-![Metrics](../opentelemetry-nodejs/img/custom_metrics_1.jpg)  
-![Metrics](../opentelemetry-nodejs/img/custom_metrics_2.png)
 
 **Custom Metrics**, **Exceptions**, and **Logs** can also be viewed in log tables using **KQL queries** like:
 
@@ -99,10 +93,3 @@ traces
 | where message contains "dice"
 
 ```
-
-![Traces](../opentelemetry-nodejs/img/traces_1.png)
-
-![Traces](../opentelemetry-nodejs/img/traces_2.png)  
-
-![CustomMetrics](../opentelemetry-nodejs/img/custom_metrics_1.png)
-![CustomMetrics](../opentelemetry-nodejs/img/custom_metrics_1.png)
