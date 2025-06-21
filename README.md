@@ -103,4 +103,4 @@ traces
 ![Traces](/img/traces_2.png)  
 
 ![CustomMetrics](/img/custom_metrics_1.png)
-![CustomMetrics](/img/custom_metrics_1.png)
+![CustomMetrics](/img/custom_metrics_2.png)
