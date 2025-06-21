@@ -46,9 +46,7 @@ npm install
 
 ### ▶️ Start the Project
 
-```bash
 node src/app.js
-```
 
 ### 🧪 Test the endpoints
 
