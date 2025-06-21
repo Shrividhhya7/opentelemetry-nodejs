@@ -1,54 +1,63 @@
 const { NodeSDK } = require('@opentelemetry/sdk-node');
-const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-http');
-const { OTLPMetricExporter } = require('@opentelemetry/exporter-metrics-otlp-http');
+const {
+  AzureMonitorTraceExporter,
+  AzureMonitorMetricExporter,
+  AzureMonitorLogExporter,
+} = require('@azure/monitor-opentelemetry-exporter');
+
 const { PeriodicExportingMetricReader } = require('@opentelemetry/sdk-metrics');
-const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
-const { Resource } = require('@opentelemetry/resources');
-const { ATTR_SERVICE_VERSION, ATTR_SERVICE_NAME,ATTR_CLOUD_PROVIDER,ATTR_CLOUD_REGION } = require('@opentelemetry/semantic-conventions');
+const { LoggerProvider, BatchLogRecordProcessor } = require('@opentelemetry/sdk-logs');
+const { resourceFromAttributes } = require('@opentelemetry/resources');
+const {
+  ATTR_SERVICE_NAME,
+  ATTR_SERVICE_VERSION,
+} = require('@opentelemetry/semantic-conventions');
+const { diag, DiagConsoleLogger, DiagLogLevel } = require('@opentelemetry/api');
 
-const { LoggerProvider } = require('@opentelemetry/sdk-logs');
-const { ConsoleLogRecordExporter, SimpleLogRecordProcessor } = require('@opentelemetry/sdk-logs');
+// ✅ Optional: Enable OpenTelemetry internal debug logging
+diag.setLogger(new DiagConsoleLogger(), DiagLogLevel.INFO);
 
-// 🧠 Enrich telemetry data with semantic conventions
-const resource = new Resource({
-  [ATTR_SERVICE_NAME]: 'dice-app',
-  [ATTR_SERVICE_VERSION]: '1.0.0',
-  [ATTR_CLOUD_PROVIDER]: 'azure',
-  [ATTR_CLOUD_REGION]: 'us-east-1'
+// ✅ Define your Application Insights connection string directly here
+const connectionString = 'InstrumentationKey=8a5d7300-6624-4a43-a949-759676d59a7e;IngestionEndpoint=https://southindia-0.in.applicationinsights.azure.com/;LiveEndpoint=https://southindia.livediagnostics.monitor.azure.com/;ApplicationId=c3e1543b-afd6-4bcf-9864-badcd3922802';
+
+// ✅ Create exporters
+const traceExporter = new AzureMonitorTraceExporter({ connectionString });
+const metricExporter = new AzureMonitorMetricExporter({ connectionString });
+const logExporter = new AzureMonitorLogExporter({ connectionString });
+
+// ✅ Define resource metadata
+const resource = resourceFromAttributes({
+  [ATTR_SERVICE_NAME]: 'dice-roll',
+  [ATTR_SERVICE_VERSION]: '0.1.0',
 });
 
-// ✅ Traces
-const traceExporter = new OTLPTraceExporter();
-
-// ✅ Metrics
-const metricExporter = new OTLPMetricExporter();
-const metricReader = new PeriodicExportingMetricReader({
-  exporter: metricExporter,
-  exportIntervalMillis: 1000
+// ✅ Logger provider with log exporter
+const loggerProvider = new LoggerProvider({
+  resource,
+  logRecordProcessors: [new BatchLogRecordProcessor(logExporter)],
 });
 
-// ✅ Logs
-const loggerProvider = new LoggerProvider({ resource });
-loggerProvider.addLogRecordProcessor(
-  new SimpleLogRecordProcessor(new ConsoleLogRecordExporter())
-);
 
-// ✅ Node SDK setup
+// ✅ Configure and start the OpenTelemetry Node SDK
 const sdk = new NodeSDK({
   resource,
   traceExporter,
-  metricReader,
-  instrumentations: [getNodeAutoInstrumentations()]
+  metricReader: new PeriodicExportingMetricReader({ exporter: metricExporter }),
+  loggerProvider,
+  // No auto-instrumentation – using manual only
 });
 
-sdk.start()
-  .then(() => console.log('✅ OpenTelemetry Initialized'))
-  .catch(err => console.error('❌ OTel Init Failed', err));
+(async () => {
+  try {
+    await sdk.start();
+    console.log('✅ OpenTelemetry sending data to Azure Application Insights');
+  } catch (err) {
+    console.error('❌ OpenTelemetry initialization failed:', err);
+  }
+})();
 
-// ✅ Shutdown on exit
-process.on('SIGTERM', () => {
-  sdk.shutdown()
-    .then(() => console.log('✅ OpenTelemetry Shutdown Complete'))
-    .catch(err => console.error('❌ Shutdown Error', err))
-    .finally(() => process.exit(0));
+// ✅ Graceful shutdown on SIGTERM
+process.on('SIGTERM', async () => {
+  await sdk.shutdown();
+  console.log('🛑 OpenTelemetry shut down gracefully');
 });
