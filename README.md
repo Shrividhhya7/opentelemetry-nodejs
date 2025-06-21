@@ -1,4 +1,3 @@
-```markdown
 ### 📘 Introduction
 # 🎲 Dice API with OpenTelemetry
 
@@ -65,18 +64,14 @@ This app uses the following exporters from `@azure/monitor-opentelemetry-exporte
 
 Telemetry is tagged with a resource using:
 
-```javascript
 resourceFromAttributes({
   'service.name': 'dice-roll',
   'service.version': '0.1.0',
 });
-```
+
 
 ## 📡 Notes
 
   - No auto-instrumentation is used — this app uses manual spans, counters, and histograms.
   - Replace the connection string in `instrumentation.js` with your own Application Insights key.
   - Graceful shutdown is handled via `SIGTERM`.
-
-```
-```
