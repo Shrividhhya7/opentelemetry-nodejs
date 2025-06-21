@@ -86,7 +86,7 @@ All the traces and dependencies are visible in **Transaction Search** within App
 
 Metrics are visible in the **Metrics** section of Application Insights.
 
-![Metrics](../opentelemetry-nodejs/img/custom_metrics_1.png)  
+![Metrics](../opentelemetry-nodejs/img/custom_metrics_1.jpg)  
 ![Metrics](../opentelemetry-nodejs/img/custom_metrics_2.png)
 
 **Custom Metrics**, **Exceptions**, and **Logs** can also be viewed in log tables using **KQL queries** like:
@@ -101,6 +101,7 @@ traces
 ```
 
 ![Traces](../opentelemetry-nodejs/img/traces_1.png)
+
 ![Traces](../opentelemetry-nodejs/img/traces_2.png)  
 
 ![CustomMetrics](../opentelemetry-nodejs/img/custom_metrics_1.png)
