@@ -1,4 +1,5 @@
 ```markdown
+### 1. 📘 Introduction
 # 🎲 Dice API with OpenTelemetry
 
 A simple Node.js app using Express that:
@@ -7,8 +8,6 @@ A simple Node.js app using Express that:
 - Implements **manual OpenTelemetry instrumentation**
 - Exports **traces**, **metrics**, and **logs** to **Azure Application Insights**
 - Includes rich semantic metadata
-
----
 
 ## 🚀 Features
 
