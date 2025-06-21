@@ -18,24 +18,6 @@ A simple Node.js app using Express that:
 | Metrics | ✅       | Azure Monitor Metric Exporter                |
 | Logs    | ✅       | Azure Monitor Log Exporter                   |
 
----
-
-## 🛠 Project Structure
-
-```
-
-.
-├── .env                    \# (Optional) for connection string if you use dotenv
-├── package.json
-├── /src
-│   ├── app.js              \# Express app with manual tracing and metrics
-│   ├── dice.js             \# Dice logic with span events and exceptions
-│   └── instrumentation.js  \# OpenTelemetry SDK setup with Azure exporters
-
-````
-
----
-
 ## 🧰 Dependencies
 
 - `express`
@@ -56,7 +38,6 @@ Telemetry includes:
 - `http.route`, `dice.sides`, `dice.result`, `http.duration.ms`, and other custom tags
 - Exception tracking and span events
 
----
 
 ## 🔧 Install & Run
 
@@ -66,19 +47,18 @@ Telemetry includes:
 npm install
 ````
 
-### 2\. ▶️ Start the Project
+### 2. ▶️ Start the Project
 
 ```bash
 node src/app.js
 ```
 
-### 3\. 🧪 Test the endpoints
+### 3. 🧪 Test the endpoints
 
   - `GET http://localhost:3000/` → Welcome page
   - `GET http://localhost:3000/roll` → Roll a 6-sided dice
   - `GET http://localhost:3000/roll?sides=20` → Roll a 20-sided dice
 
------
 
 ## 🌐 Azure Application Insights Integration
 
