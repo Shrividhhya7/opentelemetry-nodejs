@@ -69,14 +69,6 @@ resourceFromAttributes({
   'service.version': '0.1.0',
 });
 
-
-## 📡 Notes
-
-  - No auto-instrumentation is used — this app uses manual spans, counters, and histograms.
-  - Replace the connection string in `instrumentation.js` with your own Application Insights key.
-  - Graceful shutdown is handled via `SIGTERM`.
-
-
 ### 📊 Data in Azure Monitor
 
 All the traces and dependencies are visible in **Transaction Search** within Application Insights.
@@ -104,3 +96,9 @@ traces
 
 ![CustomMetrics](/img/custom_metrics_1.png)
 ![CustomMetrics](/img/custom_metrics_2.png)
+
+## 📡 Notes
+
+  - No auto-instrumentation is used — this app uses manual spans, counters, and histograms.
+  - Replace the connection string in `instrumentation.js` with your own Application Insights key.
+  - Graceful shutdown is handled via `SIGTERM`.
